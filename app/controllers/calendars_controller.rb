@@ -36,6 +36,7 @@ class CalendarsController < ApplicationController
         today_plans.push(plan.plan) if Plan.date == @todays_date + x
       end
 
+
       wday_num = Date.today.wday + x
        #Date.today.wdayを利用して添字となる数値を得る
       #もしもwday_numが7以上であれば、7を引く
@@ -44,7 +45,9 @@ class CalendarsController < ApplicationController
       end
 
       days = { month: (@todays_date + x).month, date: (@todays_date+x).day, plans: today_plans, wday: wdays[(@todays_date+x).wday]}
-    
+
+      days = { month: (@todays_date + x).month, date: (@todays_date+x).day, :plans => today_plans}
+
       @week_days.push(days)
     end
   end
